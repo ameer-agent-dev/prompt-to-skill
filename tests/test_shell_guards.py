@@ -21,8 +21,8 @@ import validate_skill  # noqa: E402
 
 
 def to_posix_sh_path(path: Path) -> str:
-    """Convert a host filesystem Path into a POSIX '/...' path for sh (including Git Bash on Windows)."""
-    raw = path.resolve().as_posix()
+    """Convert a host filesystem Path into a POSIX '/...' path for sh without dereferencing symlinks."""
+    raw = Path(os.path.abspath(path)).as_posix()
     if os.name == "nt" and len(raw) >= 2 and raw[1] == ":":
         return f"/{raw[0].lower()}{raw[2:]}"
     return raw
