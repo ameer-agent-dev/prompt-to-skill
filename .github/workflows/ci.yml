@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Validate Skill and Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run static skill validator
+        run: python3 scripts/validate_skill.py . --json
+
+      - name: Check POSIX sh -n on SKILL.md shell blocks
+        run: |
+          python3 - <<'PY'
+          import pathlib, re, subprocess, sys
+          text = pathlib.Path("SKILL.md").read_text(encoding="utf-8")
+          blocks = re.findall(r"```(?:bash|sh)\n(.*?)```", text, flags=re.DOTALL)
+          assert blocks, "Expected fenced bash/sh blocks in SKILL.md"
+          for idx, block in enumerate(blocks, start=1):
+              proc = subprocess.run(["sh", "-n"], input=block.encode("utf-8"))
+              if proc.returncode != 0:
+                  sys.exit(proc.returncode)
+          print(f"Verified {len(blocks)} shell blocks with sh -n.")
+          PY
+
+      - name: Verify zero-call adapter detection
+        run: python3 scripts/run_evals.py --detect-only
+
+      - name: Run unit and POSIX sh guard tests
+        run: python3 -m unittest discover -s tests -v

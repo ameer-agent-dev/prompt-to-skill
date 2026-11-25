@@ -1,0 +1,15 @@
+{
+  "$schema": "https://agentskills.io/schemas/plugin-1.0.0.json",
+  "name": "prompt-to-skill",
+  "version": "1.0.0",
+  "description": "Turns a rough prompt or recurring workflow into a validated, portable Agent Skill (SKILL.md plus optional references/scripts).",
+  "author": {
+    "name": "ameer",
+    "url": "https://github.com/ameer-agent-dev"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/ameer-agent-dev/prompt-to-skill",
+  "skills": [
+    "."
+  ]
+}
