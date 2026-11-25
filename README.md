@@ -1,18 +1,30 @@
 # prompt-to-skill
 
+[![skills.sh](https://img.shields.io/badge/skills.sh-prompt--to--skill-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://skills.sh/ameer-agent-dev/prompt-to-skill/prompt-to-skill)
+[![CI](https://img.shields.io/github/actions/workflow/status/ameer-agent-dev/prompt-to-skill/ci.yml?branch=main&style=for-the-badge&label=CI)](https://github.com/ameer-agent-dev/prompt-to-skill/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
+
+**Live on skills.sh:** [skills.sh/ameer-agent-dev/prompt-to-skill/prompt-to-skill](https://skills.sh/ameer-agent-dev/prompt-to-skill/prompt-to-skill)
+
 Turn any rough prompt or recurring workflow into a validated, portable Agent Skill (`SKILL.md` plus optional `references/` and `scripts/`) via a bounded evaluation loop inside a run-isolated workspace.
 
 Built on the [Open Agent Skills specification](https://agentskills.io/specification), Agent Plugins 1.0.0 (`plugin.json`), and `skills.sh` zero-config discovery across Claude 2.0 / Claude Code, ChatGPT 2.0 / Codex, Gemini CLI, OpenCode, and hosted runtimes.
 
 ## Quick Install
 
-Preview discovered skill metadata before installing:
+Open on [skills.sh](https://skills.sh/ameer-agent-dev/prompt-to-skill/prompt-to-skill) to inspect, download, or copy into your AI coding agent, or prompt your AI model directly:
+
+```text
+Install the prompt-to-skill Agent Skill from https://skills.sh/ameer-agent-dev/prompt-to-skill/prompt-to-skill
+```
+
+Preview discovered skill metadata via CLI before installing:
 
 ```bash
 npx skills add ameer-agent-dev/prompt-to-skill --list
 ```
 
-Install into your agent client:
+Install directly via CLI:
 
 ```bash
 npx skills add ameer-agent-dev/prompt-to-skill
